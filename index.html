@@ -1,154 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Christmas Personality Test 🎄</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Christmas Personality Test 🎄</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
 
-    body {
-      background: radial-gradient(circle at top, #ff3c3c, #0b0b0b);
-      color: white;
-      min-height: 100vh;
-      overflow: hidden;
-    }
+body {
+  background: linear-gradient(180deg, #b30000, #0b0b0b);
+  color: white;
+  min-height: 100vh;
+  overflow: hidden;
+}
 
-    .snow {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background-image: url("https://i.imgur.com/5QFQk5K.png");
-      animation: snow 20s linear infinite;
-      opacity: 0.4;
-    }
+/* ❄️ PURE CSS SNOW */
+.snowflake {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 1em;
+  animation: fall linear infinite;
+  opacity: 0.8;
+}
 
-    @keyframes snow {
-      0% { background-position: 0 0; }
-      100% { background-position: 0 1000px; }
-    }
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
+}
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-      padding: 20px;
-    }
+.container {
+  text-align: center;
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+  margin-top: 10vh;
+}
 
-    h1 {
-      font-size: 2.5rem;
-      text-shadow: 0 0 15px #ffb3b3;
-      margin-bottom: 10px;
-    }
+h1 {
+  font-size: 2.3rem;
+  margin-bottom: 15px;
+  text-shadow: 0 0 15px red;
+}
 
-    p {
-      opacity: 0.9;
-      margin-bottom: 25px;
-    }
+p {
+  margin-bottom: 20px;
+}
 
-    .btn {
-      background: linear-gradient(135deg, #ff5f5f, #ff0000);
-      border: none;
-      padding: 15px 25px;
-      margin: 10px;
-      border-radius: 30px;
-      font-size: 1rem;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 0 20px rgba(255,0,0,0.5);
-    }
+.btn {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(135deg, #ff4d4d, #ff0000);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    .btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 35px rgba(255,0,0,0.9);
-    }
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px red;
+}
 
-    .question {
-      display: none;
-      animation: fade 0.6s ease;
-    }
+.question {
+  display: none;
+}
 
-    @keyframes fade {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .result {
-      display: none;
-      animation: fade 1s ease;
-    }
-
-    .credit {
-      position: fixed;
-      bottom: 10px;
-      right: 15px;
-      font-size: 0.8rem;
-      opacity: 0.6;
-    }
-  </style>
+.credit {
+  position: fixed;
+  bottom: 8px;
+  right: 12px;
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+</style>
 </head>
 
 <body>
-  <div class="snow"></div>
 
-  <div class="container">
-    <div id="q1" class="question" style="display:block">
-      <h1>🎄 Christmas Personality Test</h1>
-      <p>First instinct on Christmas morning?</p>
-      <button class="btn" onclick="next(2)">🎁 Gifts first</button>
-      <button class="btn" onclick="next(2)">😴 Sleep more</button>
-    </div>
+<div class="container">
 
-    <div id="q2" class="question">
-      <h1>☕ Pick one</h1>
-      <button class="btn" onclick="next(3)">Hot Chocolate</button>
-      <button class="btn" onclick="next(3)">Coffee</button>
-    </div>
-
-    <div id="q3" class="question">
-      <h1>🎶 Christmas vibe?</h1>
-      <button class="btn" onclick="next(4)">Loud & Fun</button>
-      <button class="btn" onclick="next(4)">Calm & Cozy</button>
-    </div>
-
-    <div id="q4" class="question">
-      <h1>🔥 You are more…</h1>
-      <button class="btn" onclick="showResult()">Chill</button>
-      <button class="btn" onclick="showResult()">Savage</button>
-    </div>
-
-    <div id="result" class="result">
-      <h1>❄️ You are a</h1>
-      <h1 style="color:#ffd700">WINTER LEGEND</h1>
-      <p>Rare vibes. Calm energy. Silent confidence.</p>
-      <p>Drop this story — let them wonder 😌</p>
-      <button class="btn" onclick="location.reload()">Try Again</button>
-    </div>
+  <div id="q1" class="question" style="display:block">
+    <h1>🎄 Christmas Test</h1>
+    <p>Morning mood?</p>
+    <button class="btn" onclick="answer(2)">Excited</button>
+    <button class="btn" onclick="answer(1)">Sleepy</button>
+    <button class="btn" onclick="answer(3)">Chaotic</button>
   </div>
 
-  <div class="credit">Created by Yuvi © 2025</div>
+  <div id="q2" class="question">
+    <p>Your Christmas drink?</p>
+    <button class="btn" onclick="answer(2)">Hot Chocolate</button>
+    <button class="btn" onclick="answer(3)">Coffee</button>
+    <button class="btn" onclick="answer(1)">Nothing</button>
+  </div>
 
-  <script>
-    function next(n) {
-      document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
-      document.getElementById('q' + n).style.display = 'block';
-    }
+  <div id="q3" class="question">
+    <p>Party style?</p>
+    <button class="btn" onclick="answer(3)">Loud</button>
+    <button class="btn" onclick="answer(2)">Small group</button>
+    <button class="btn" onclick="answer(1)">Solo</button>
+  </div>
 
-    function showResult() {
-      document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
-      document.getElementById('result').style.display = 'block';
-    }
-  </script>
+  <div id="q4" class="question">
+    <p>Gift giving?</p>
+    <button class="btn" onclick="answer(3)">Thoughtful</button>
+    <button class="btn" onclick="answer(2)">Random</button>
+    <button class="btn" onclick="answer(1)">None</button>
+  </div>
+
+  <div id="q5" class="question">
+    <p>Music vibe?</p>
+    <button class="btn" onclick="answer(3)">Full blast</button>
+    <button class="btn" onclick="answer(2)">Background</button>
+    <button class="btn" onclick="answer(1)">Silence</button>
+  </div>
+
+  <div id="q6" class="question">
+    <p>You are more…</p>
+    <button class="btn" onclick="finish()">Calm</button>
+    <button class="btn" onclick="finish()">Savage</button>
+    <button class="btn" onclick="finish()">Mysterious</button>
+  </div>
+
+  <div id="result" class="question">
+    <h1 id="resultTitle"></h1>
+    <p id="resultText"></p>
+
+    <button class="btn" onclick="playMusic()">🎶 Play Christmas Music</button>
+    <button class="btn" onclick="location.reload()">Try Again</button>
+  </div>
+
+</div>
+
+<div class="credit">Created by Yuvi © 2025</div>
+
+<script>
+let score = 0;
+let current = 1;
+
+function answer(points) {
+  score += points;
+  document.getElementById("q" + current).style.display = "none";
+  current++;
+  document.getElementById("q" + current).style.display = "block";
+}
+
+function finish() {
+  document.getElementById("q" + current).style.display = "none";
+  document.getElementById("result").style.display = "block";
+
+  let results = [
+    { t: "❄️ Winter Legend", d: "Calm energy. Rare presence." },
+    { t: "🎄 Festive Soul", d: "You bring the vibes." },
+    { t: "🔥 Holiday Menace", d: "Unpredictable & iconic." },
+    { t: "🎁 Silent Santa", d: "Low-key but powerful." },
+    { t: "🎶 Cozy Caroler", d: "Soft, warm, comforting." }
+  ];
+
+  let pick = results[score % results.length];
+  document.getElementById("resultTitle").innerText = pick.t;
+  document.getElementById("resultText").innerText = pick.d;
+}
+
+/* ❄️ Generate snow */
+for (let i = 0; i < 40; i++) {
+  let s = document.createElement("div");
+  s.className = "snowflake";
+  s.innerText = "❄";
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.animationDuration = (Math.random() * 5 + 5) + "s";
+  s.style.fontSize = (Math.random() * 10 + 10) + "px";
+  document.body.appendChild(s);
+}
+
+/* 🎶 Music */
+function playMusic() {
+  window.open("https://www.youtube.com/watch?v=aAkMkVFwAoo", "_blank");
+}
+</script>
+
 </body>
 </html>
