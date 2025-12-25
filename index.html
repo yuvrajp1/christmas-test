@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Christmas Personality Test 🎄</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #ff3c3c, #0b0b0b);
+      color: white;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .snow {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-image: url("https://i.imgur.com/5QFQk5K.png");
+      animation: snow 20s linear infinite;
+      opacity: 0.4;
+    }
+
+    @keyframes snow {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 1000px; }
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-shadow: 0 0 15px #ffb3b3;
+      margin-bottom: 10px;
+    }
+
+    p {
+      opacity: 0.9;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #ff5f5f, #ff0000);
+      border: none;
+      padding: 15px 25px;
+      margin: 10px;
+      border-radius: 30px;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 20px rgba(255,0,0,0.5);
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 35px rgba(255,0,0,0.9);
+    }
+
+    .question {
+      display: none;
+      animation: fade 0.6s ease;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result {
+      display: none;
+      animation: fade 1s ease;
+    }
+
+    .credit {
+      position: fixed;
+      bottom: 10px;
+      right: 15px;
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="snow"></div>
+
+  <div class="container">
+    <div id="q1" class="question" style="display:block">
+      <h1>🎄 Christmas Personality Test</h1>
+      <p>First instinct on Christmas morning?</p>
+      <button class="btn" onclick="next(2)">🎁 Gifts first</button>
+      <button class="btn" onclick="next(2)">😴 Sleep more</button>
+    </div>
+
+    <div id="q2" class="question">
+      <h1>☕ Pick one</h1>
+      <button class="btn" onclick="next(3)">Hot Chocolate</button>
+      <button class="btn" onclick="next(3)">Coffee</button>
+    </div>
+
+    <div id="q3" class="question">
+      <h1>🎶 Christmas vibe?</h1>
+      <button class="btn" onclick="next(4)">Loud & Fun</button>
+      <button class="btn" onclick="next(4)">Calm & Cozy</button>
+    </div>
+
+    <div id="q4" class="question">
+      <h1>🔥 You are more…</h1>
+      <button class="btn" onclick="showResult()">Chill</button>
+      <button class="btn" onclick="showResult()">Savage</button>
+    </div>
+
+    <div id="result" class="result">
+      <h1>❄️ You are a</h1>
+      <h1 style="color:#ffd700">WINTER LEGEND</h1>
+      <p>Rare vibes. Calm energy. Silent confidence.</p>
+      <p>Drop this story — let them wonder 😌</p>
+      <button class="btn" onclick="location.reload()">Try Again</button>
+    </div>
+  </div>
+
+  <div class="credit">Created by Yuvi © 2025</div>
+
+  <script>
+    function next(n) {
+      document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
+      document.getElementById('q' + n).style.display = 'block';
+    }
+
+    function showResult() {
+      document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
+      document.getElementById('result').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
